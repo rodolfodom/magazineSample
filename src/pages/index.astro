@@ -1,0 +1,77 @@
+---
+import BaseHead from '../components/BaseHead.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
+import { imageConfig } from 'astro:assets';
+import Slider from '../components/Slider'
+
+---
+
+<!doctype html>
+<html lang="es">
+	<head>
+		<BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
+	</head>
+	<body>
+		<Header />
+		<nav class="categories-nav">
+			<ul>
+				<li><a href="/blog">Política Exterior</a></li>
+				<li><a href="/about">Seguridad Internacional</a></li>
+				<li><a href="/about">Negocios</a></li>
+				<li><a href="/about">Comercio</a></li>
+				<li><a href="/about">Economía</a></li>
+				<li><a href="/about">Cultura</a></li>
+				<li><a href="/about">Ciencia y Tecnología</a></li>
+				<li><a href="/about">Educación</a></li>
+			</ul>
+		</nav>
+		<main>
+			<Slider client:load/>
+		</main>
+		<Footer />
+	</body>
+	<style>
+		.categories-nav {
+			border-bottom: 2px solid black;
+		}
+		.categories-nav ul {
+			display: flex;
+			flex-direction: row;
+			justify-content: space-between;
+			list-style: none;
+			margin: 0 auto;
+			flex-wrap: nowrap;
+			padding: 0 1rem;
+			max-width: 1200px;
+			overflow-x: scroll;
+		}
+
+		.categories-nav ul li {
+			padding: 0.5rem 1rem;
+			flex-shrink: 0;
+			cursor: pointer;
+			border-bottom: 2px solid transparent;
+		}
+
+		.categories-nav ul li a {
+			text-decoration: none;
+			color: black;
+		}
+		
+		.categories-nav ul::-webkit-scrollbar {
+			display: none;
+		}
+
+		.categories-nav ul li:hover {
+			border-bottom-color: black;
+		}
+
+		.swiper {
+ 			width: 600px;
+  			height: 300px;
+		}
+	
+	</style>
+</html>

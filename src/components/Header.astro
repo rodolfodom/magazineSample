@@ -1,0 +1,100 @@
+---
+import HeaderLink from './HeaderLink.astro';
+import { SITE_TITLE } from '../consts';
+import Menu from './Menu.astro';
+---
+
+<header>
+	<div class="upper-bar">
+		<button class="menu-button">
+			<img src="/menu.svg" alt="menu icon">
+		</button>
+		<div class="right-section">
+			<button class="login-button">
+				<div class="icon-button-content">
+					<span>Iniciar sesión</span>
+					<img src="/user.svg" alt="">
+				</div>
+			</button>
+			
+			<button class="suscribe-button">
+				<div class="icon-button-content">
+					<span>Suscibete</span>
+					<img src="/pen.svg" alt="">
+				</div>
+			</button>
+		</div>
+	</div>
+	<div>
+		<h1 class="title">
+			{SITE_TITLE}
+		</h1>
+	</div>
+	
+</header>
+
+
+<style>
+	.upper-bar {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		padding: 1rem;
+		flex-direction: row;
+		border-bottom: 2px solid black;
+		padding: 0;
+		height: 4rem;
+		position: sticky;
+	}
+	button {
+		border: none;
+		height: 100%;
+		background-color: transparent;
+		cursor: pointer;
+	}
+
+	.menu-button {
+		border-right: 2px solid black;
+		min-width: 5rem;
+		color: black;
+	}
+
+	.right-section {
+		height: 100%;
+	}
+
+	.right-section button {
+		padding: 0 1rem;
+		border-left: 2px solid black;
+		font-size: 1rem;
+	}
+
+	h1 {
+		color: black; 
+		text-align: center;
+		font-size: 10rem;
+		border-bottom: 2px solid black;
+		margin: 0;
+	}
+
+	.suscribe-button{
+		background-color: black;
+		color: white;
+	}
+	
+	.login-button{
+		color: black;
+	}
+
+	.icon-button-content{
+		color: inherit;
+		display: flex;
+		align-items: center;
+		gap: 0.5rem;
+	}
+
+	header{
+		position: relative;
+	}
+
+</style>
