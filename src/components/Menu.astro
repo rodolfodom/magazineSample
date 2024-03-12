@@ -1,5 +1,5 @@
 ---
-    
+    const {active} = Astro.props;
 ---
 
 
@@ -28,8 +28,15 @@
         position: absolute;
         top: 4rem;
         background-color: rgba(255, 255, 255, 0.5);
-        backdrop-filter: blur(5px);
+        backdrop-filter: blur(0px);
         z-index: 5;
+        visibility: hidden;
+        animation-name: menuBackLayer;
+        animation-duration: 0.5s;
+        animation-timing-function: ease-in-out;
+        animation-fill-mode: forwards;
+        animation-delay: 100ms;
+        animation-direction: reverse;
     }
 
     ul {
@@ -48,7 +55,16 @@
         display: flex;
         flex-direction: column;
         gap: 2rem;
+        animation-name: menuNavLayer;
+        animation-duration: 0.5s;
+        animation-timing-function: ease-in-out;
+        animation-fill-mode: forwards;
+        animation-delay: 0;
+        animation-direction: reverse;
+        
     }
+
+
 
     ul::-webkit-scrollbar {
         display: none;
@@ -60,5 +76,67 @@
         font-size: 1.5rem;
         
     }
+
+    .menu.active {
+        animation-name: menuBackLayer;
+        animation-duration: 0.5s;
+        animation-timing-function: ease-in-out;
+        animation-fill-mode: forwards;
+        animation-delay: 0;
+        animation-direction: normal;
+    }
+    
+    .menu.active > ul {
+        animation-name: menuNavLayer;
+        animation-duration: 0.5s;
+        animation-timing-function: ease-in-out;
+        animation-fill-mode: forwards;
+        animation-delay: 100ms;
+        animation-direction: normal;
+    }
+
+    @keyframes menuBackLayer {
+        0% {
+            visibility: hidden;
+            backdrop-filter: blur(0px);
+        }
+
+        50% {
+            visibility: visible;
+            backdrop-filter: blur(2px);
+        }
+
+        100% {
+            visibility: visible;
+            backdrop-filter: blur(5px);
+        }
+    }
+
+
+    @keyframes menuNavLayer {
+        0% {
+            visibility: hidden;
+            transform: translateX(-100%);
+        }
+        10% {
+            visibility: visible;
+            transform: translateX(-100%);
+        }
+        100% {
+            visibility: visible;
+            transform: translateX(0);
+        }
+    }
     
 </style>
+<script>
+    const menu = document.getElementById('menu');
+    const menuButton = document.getElementById('menu-button');
+
+    if(menu && menuButton){
+        menuButton.addEventListener('click', () => {
+        menu.classList.toggle('active');
+    });
+    }
+    
+</script>

@@ -6,7 +6,7 @@ import Menu from './Menu.astro';
 
 <header>
 	<div class="upper-bar">
-		<button class="menu-button">
+		<button class="menu-button" id="menu-button">
 			<img src="/menu.svg" alt="menu icon">
 		</button>
 		<div class="right-section">
@@ -30,7 +30,7 @@ import Menu from './Menu.astro';
 			{SITE_TITLE}
 		</h1>
 	</div>
-	
+	<Menu active={false}/>
 </header>
 
 
