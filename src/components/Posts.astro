@@ -1,0 +1,43 @@
+---
+const postsResponse = await fetch("https://dummyjson.com/posts");
+const postsData = await postsResponse.json();
+const posts = postsData.posts;
+
+---
+
+<section style="margin: 4rem 0; display: flex; flex-direction: column; gap: 2rem">
+    <h2>Publicaciones recientes</h2>
+
+    {
+        posts.map(
+            async (post: {
+                id: number;
+                title: string;
+                body: string;
+                userId: number;
+                tags: string[];
+                reactions: number;
+            }) =>{
+
+                const userResponse = await fetch(`https://dummyjson.com/users/${post.userId}`);
+                const userData = await userResponse.json();
+
+                return(
+                <div style="border: 2px solid black; padding: 2rem 1rem; cursor: pointer;">
+                    <h3>{post.title}</h3>
+                    <p>{post.body}</p>
+                    <div style="display: flex; flex-direction: row; gap: 1rem; align-items: center; justify-content: end; padding: 0.5rem;">
+                        <img src={userData.image} alt="avatar" style="border-radius: 60%; width: 4.5rem; height: 4.5rem;">
+                        <div>
+                            <h5 style="margin: 0; padding: 0; color: rgb(51, 51, 51);">{`${userData.firstName} ${userData.lastName}`}</h5>
+                            <small style="color: rgb(95, 95, 95);">{userData.company.title}</small>
+                        </div>
+                    </div>
+                </div>
+                )
+            }
+                
+            
+        )
+    }
+</section>

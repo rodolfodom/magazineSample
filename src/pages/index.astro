@@ -4,6 +4,7 @@ import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
 import Slider from '../components/Slider'
+import Posts from '../components/Posts.astro'
 
 ---
 
@@ -28,6 +29,7 @@ import Slider from '../components/Slider'
 		</nav>
 		<main>
 			<Slider client:load/>
+			<Posts />
 		</main>
 		<Footer />
 	</body>
